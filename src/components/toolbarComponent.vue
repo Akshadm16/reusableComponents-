@@ -1,12 +1,70 @@
 <!-- src/components/Toolbar.vue -->
 <template>
-    <v-app-bar app>
-      <v-toolbar-title></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-icon @click="openForm">mdi-pencil</v-icon> 
-    <v-icon @click="button2Action">mdi-alert</v-icon> 
-    <v-icon @click="button3Action">mdi-delete</v-icon> 
-    </v-app-bar>
+  <div id="ToolbarContainer">
+    <div id="Toolbar">
+     <v-sheet max-width="400">
+      <v-slide-group multiple show-arrows class="Toolbar1">
+        <v-slide-group-item>
+            <v-btn icon variant="text" @click="openForm()">
+              <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
+            </v-btn>
+          </v-slide-group-item>
+          <div class="separationBar"></div>
+          <v-slide-group-item>
+            <v-btn icon
+                   variant="text"
+                   :disabled="!shouldEnableButton"
+                   @click="openProperties()">
+              <img :src="`${widgetBaseURL}/static/images/I_CATSSEditorDisplayProperties.png`"
+                   :title="('Open Properties Widget')"
+                   style="width: 25px; height: 25px; "
+                   alt="Property Icon"/>
+            </v-btn>
+          </v-slide-group-item>
+          <div class="separationBar"></div>
+          <v-slide-group-item>
+            <v-btn icon
+                   variant="text"
+                   :disabled="!shouldEnableFlagButton"
+                   @click="flag()">
+              <img :src="`${widgetBaseURL}/static/images/flag.png`"
+                   :title="('Submit')"
+                   style="width: 25px; height: 25px;"
+                   alt="Flag Icon"/>
+            </v-btn>
+          </v-slide-group-item>
+          <v-slide-group-item>
+            <v-btn icon
+                   variant="text"
+                   :disabled="!shouldEnableDemoteButton"
+                   @click="demoteButton()">
+              <img :src="`${widgetBaseURL}/static/images/iconActionDemote.png`"
+                   :title="('Demote')"
+                   style="width: 25px; height: 25px;"
+                   alt="Demote Icon"/>
+            </v-btn>
+          </v-slide-group-item>
+          <div class="separationBar" v-if="contentButtonVisibility"></div>
+          <v-slide-group-item>
+            <v-btn icon
+                   variant="text"
+                   v-if="contentButtonVisibility"
+                   @click="searchContent()">
+              <v-icon size="small" color="#3b7391" :title="$t('Add Content')">mdi-file-plus</v-icon>
+            </v-btn>
+          </v-slide-group-item>
+          <v-slide-group-item>
+            <v-btn icon
+                   variant="text"
+                   v-if="contentButtonVisibility"
+                   @click="removeContent()">
+              <v-icon size="small" color="#3b7391" :title="$t('Remove Content')">mdi-file-remove</v-icon>
+            </v-btn>
+          </v-slide-group-item> 
+      </v-slide-group>  
+     </v-sheet >
+    </div>
+    </div>
   </template>
   
   <script>
@@ -14,13 +72,59 @@
     methods: {
       openForm() {
         this.$emit('open-form');
-        this.$emit('open-form');
       }
     }
   };
   </script>
   
-  <style>
-  /* Add any styles you need for your toolbar */
-  </style>
+<style>
+#ToolbarContainer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+#Toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 3px;
+    left: 25%;
+    background-color: #e2e4e3;
+    z-index: 4;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 0 4px rgba(61, 61, 61, 0.5);
+    border-top: 1px solid #b4b6ba;
+    border-left: 1px solid #b4b6ba;
+    border-right: 1px solid #b4b6ba;
+    pointer-events: all;
+}
+
+.Toolbar1 {
+    background-color: #e2e4e3;
+}
+
+.separationBar {
+    display: inline-block;
+    background-color: #bdbdbd;
+    width: 2px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-right: 1px solid white;
+}
+
+.hideProperties {
+    -moz-filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: .5;
+    opacity: .4;
+}
+</style>
   
