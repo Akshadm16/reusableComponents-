@@ -13,35 +13,23 @@
           <v-slide-group-item>
             <v-btn icon
                    variant="text"
-                   :disabled="!shouldEnableButton"
                    @click="openProperties()">
-              <img :src="`${widgetBaseURL}/static/images/I_CATSSEditorDisplayProperties.png`"
-                   :title="('Open Properties Widget')"
-                   style="width: 25px; height: 25px; "
-                   alt="Property Icon"/>
+                   <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar"></div>
           <v-slide-group-item>
             <v-btn icon
                    variant="text"
-                   :disabled="!shouldEnableFlagButton"
                    @click="flag()">
-              <img :src="`${widgetBaseURL}/static/images/flag.png`"
-                   :title="('Submit')"
-                   style="width: 25px; height: 25px;"
-                   alt="Flag Icon"/>
+                   <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-close</v-icon>
             </v-btn>
           </v-slide-group-item>
           <v-slide-group-item>
             <v-btn icon
                    variant="text"
-                   :disabled="!shouldEnableDemoteButton"
                    @click="demoteButton()">
-              <img :src="`${widgetBaseURL}/static/images/iconActionDemote.png`"
-                   :title="('Demote')"
-                   style="width: 25px; height: 25px;"
-                   alt="Demote Icon"/>
+                   <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-pencil</v-icon>
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar" v-if="contentButtonVisibility"></div>
