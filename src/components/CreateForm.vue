@@ -1,23 +1,30 @@
-<!-- src/components/FormComponent.vue -->
+<!-- src/components/CreateForm.vue -->
 <template>
     <v-container>
       <v-form @submit.prevent="submitForm">
+        Name
         <v-text-field
           label="Name"
           v-model="formData.name"
           @input="updateFormData"
+          name="name"
         ></v-text-field>
+        Email
         <v-text-field
           label="Email"
           v-model="formData.email"
           @input="updateFormData"
+          name="email"
         ></v-text-field>
+        Message
         <v-textarea
           label="Message"
           v-model="formData.message"
           @input="updateFormData"
+          name="message"
         ></v-textarea>
         <v-btn type="submit" color="primary">Submit</v-btn>
+        <v-btn type="close" color="primary">Close</v-btn>
       </v-form>
     </v-container>
   </template>
@@ -27,13 +34,19 @@
   
   export default {
     computed: {
-      ...mapState(['formData'])
+      ...mapState({
+        formData: state => state.formData
+      })
     },
     methods: {
       ...mapActions(['updateFormData']),
+      updateFormData(event) {
+        const { name, value } = event.target;
+        this.updateFormData({ [name]: value });
+      },
       submitForm() {
-        // Here you can handle form submission, e.g., send the data to an API
         console.log(this.formData);
+        // handle form submission here
       }
     }
   };

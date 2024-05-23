@@ -1,26 +1,37 @@
+
+<!-- src/App.vue -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app>
+    <v-main>
+      <toolbarComponent @open-form="showForm = true" />
+      <v-container>
+        <!-- Your main content here -->
+      </v-container>
+
+      <v-dialog v-model="showForm" max-width="600px">
+        <CreateForm />
+      </v-dialog>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import toolbarComponent from './components/toolbarComponent.vue';
+import CreateForm from './components/CreateForm.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    toolbarComponent,
+    CreateForm
+  },
+  data() {
+    return {
+      showForm: false
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+/* Add any styles you need for your app */
 </style>
