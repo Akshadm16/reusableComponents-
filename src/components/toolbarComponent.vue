@@ -2,73 +2,73 @@
 <template>
   <div id="ToolbarContainer">
     <div id="Toolbar">
-     <v-sheet max-width="400">
-      <v-slide-group multiple show-arrows >
-        <v-slide-group-item>
-            <v-btn icon variant="text" @click="OpenForm"> 
-              <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
-            </v-btn>
-          </v-slide-group-item>
+      <v-sheet max-width="400">
+        <v-slide-group multiple show-arrows>
+          <ToolbarButton
+            :icon="'mdi-asterisk'"
+            :title="'Create Change Request'"
+            :action="OpenForm"
+          />
           <div class="separationBar"></div>
-          <v-slide-group-item>
-            <v-btn icon
-                   variant="text" @click="OpenForm"
-                   >
-                   <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
-            </v-btn>
-          </v-slide-group-item>
+          <ToolbarButton
+            :icon="'mdi-plus'"
+            :title="'Create Change Request'"
+            :action="OpenForm"
+          />
           <div class="separationBar"></div>
-          <v-slide-group-item>
-            <v-btn icon
-                   variant="text"
-                   @click="flag()">
-                   <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-close</v-icon>
-            </v-btn>
-          </v-slide-group-item>
-          <v-slide-group-item>
-            <v-btn icon
-                   variant="text"
-                   @click="demoteButton()">
-                   <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-pencil</v-icon>
-            </v-btn>
-          </v-slide-group-item>
-      </v-slide-group>  
-     </v-sheet >
+          <ToolbarButton
+            :icon="'mdi-close'"
+            :title="'Create Change Request'"
+            :action="flag"
+          />
+          <ToolbarButton
+            :icon="'mdi-pencil'"
+            :title="'Create Change Request'"
+            :action="demoteButton"
+          />
+        </v-slide-group>
+      </v-sheet>
     </div>
     </div>
   </template>
   
   <script>
-
-import { mapState, mapMutations } from "vuex";
-
-export default {
+  import { mapState , mapMutations } from "vuex";
+  import ToolbarButton from './ToolbarButton.vue';
+  export default {
+  components: {
+    ToolbarButton,
+  },
     data: function () {
-        return {
-            showToolbar: true
-        };
-    },
-    computed: {
-        ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
-    },
-
-    methods: {
-        ...mapMutations(["toggleEditOptionXMLForm"]),
-        ...mapMutations(["toggleFeatureXMLForm"]),
-        /**
-         * Function to call Action that open properties page
-         */
-        displayProperties: function () {
-            this.openDisplayProperties();
+            return {
+                showToolbar: true
+            };
         },
-        OpenForm: function () {
-      console.log("Tool bar entry")
-        this.toggleFeatureXMLForm()
-    },
-      }
-    }
-  
-  
+        computed: {
+            ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
+        },
+
+        methods: {
+            ...mapMutations(["toggleEditOptionXMLForm"]),
+            ...mapMutations(["toggleFeatureXMLForm"]),
+            /**
+             * Function to call Action that open properties page
+             */
+            displayProperties: function () {
+                this.openDisplayProperties();
+            },
+            OpenForm: function () {
+          console.log("Tool bar entry")
+            this.toggleFeatureXMLForm()
+        },
+        flag() {
+              console.log("Called flag");
+            },
+            demoteButton() {
+              console.log("Called demoteButton");
+            }
+          }
+        }
   </script>
   
 <style>
