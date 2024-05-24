@@ -33,7 +33,8 @@
   </template>
 
   <script>
-  import { mapActions, mapMutations  } from "vuex";
+  import { mapState, mapMutations  } from "vuex";
+  import ToolbarButton from './ToolbarButton.vue'
   export default {
     components: {
       ToolbarButton,
