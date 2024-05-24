@@ -1,6 +1,8 @@
 <!-- src/components/CreateForm.vue -->
+
 <template>
-        <v-card id="featureXMLForm">
+  <v-dialog v-model="isValidForm"  max-width="500">
+        <v-card v-if="isValidForm" id="featureXMLForm">
             <v-card-title class="d-flex justify-space-between align-center">
                 <div class="text-medium-emphasis ps-2 title">{{ ("Create Feature XML") }}</div>
                 <v-btn icon="mdi-close" variant="text" @click="closeForm" color="red" />
@@ -40,8 +42,10 @@
                 <v-btn @click="closeForm" color="#e01b3c">{{ ("Cancel") }}</v-btn>
             </v-card-actions>
         </v-card>
-  
+      </v-dialog>
+      
   </template>
+
   
   <script>
   import { mapState, mapActions } from 'vuex';
@@ -54,14 +58,14 @@
                 description: ""
             },
 
-            isValidForm: false,
+           
 
             // nameRules: [v => !!v || this.$t("Name is required"), v => /^[A-Z0-9._-]*$/.test(v) || this.$t("rules for name")],
             // descriptionRules: [v => !!v || this.$t("Description is required"), v => !v.includes("~") || this.$t("rule for desc")]
         };
     },
     computed: {
-      ...mapState(["featureXMLForm"])
+      ...mapState(["featureXMLForm", "isValidForm"])
     },
     methods: {
       ...mapActions(['toggleFeatureXMLForm']),
@@ -72,7 +76,11 @@
       submitForm() {
         console.log(this.formData);
         // handle form submission here
-      }
+      },
+      closeForm: function () {
+            this.toggleFeatureXMLForm();
+            this.$refs.featureOption.reset();
+        }
     }
   };
   </script>

@@ -5,15 +5,15 @@
      <v-sheet max-width="400">
       <v-slide-group multiple show-arrows >
         <v-slide-group-item>
-            <v-btn icon variant="text" @click="OpenFeatureForm()">
+            <v-btn icon variant="text" @click="OpenForm"> 
               <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar"></div>
           <v-slide-group-item>
             <v-btn icon
-                   variant="text"
-                   @click="OpenFeatureForm()">
+                   variant="text" @click="OpenForm"
+                   >
                    <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
             </v-btn>
           </v-slide-group-item>
@@ -32,21 +32,6 @@
                    <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-pencil</v-icon>
             </v-btn>
           </v-slide-group-item>
-          <div class="separationBar"></div>
-          <v-slide-group-item>
-            <v-btn icon
-                   variant="text"
-                   @click="searchContent()">
-              <v-icon size="small" color="#3b7391" :title="('Add Content')">mdi-file-plus</v-icon>
-            </v-btn>
-          </v-slide-group-item>
-          <v-slide-group-item>
-            <v-btn icon
-                   variant="text"
-                   @click="removeContent()">
-              <v-icon size="small" color="#3b7391" :title="('Remove Content')">mdi-file-remove</v-icon>
-            </v-btn>
-          </v-slide-group-item> 
       </v-slide-group>  
      </v-sheet >
     </div>
@@ -54,16 +39,35 @@
   </template>
   
   <script>
-  import { mapActions } from "vuex";
-  export default {
+
+import { mapState, mapMutations } from "vuex";
+
+export default {
+    data: function () {
+        return {
+            showToolbar: true
+        };
+    },
+    computed: {
+        ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
+    },
 
     methods: {
-    ...mapActions(["toggleFeatureXMLForm"]),
-    OpenFeatureForm: function () {
-            this.toggleFeatureXMLForm();
+        ...mapMutations(["toggleEditOptionXMLForm"]),
+        ...mapMutations(["toggleFeatureXMLForm"]),
+        /**
+         * Function to call Action that open properties page
+         */
+        displayProperties: function () {
+            this.openDisplayProperties();
         },
-  }
-  };
+        OpenForm: function () {
+      console.log("Tool bar entry")
+        this.toggleFeatureXMLForm()
+    },
+      }
+    }
+  
   
   </script>
   
