@@ -31,24 +31,22 @@
     </div>
     </div>
   </template>
-  
-  <script>
-  import { mapState , mapMutations } from "vuex";
-  import ToolbarButton from './ToolbarButton.vue';
-  export default {
-  components: {
-    ToolbarButton,
-  },
-    data: function () {
-            return {
-                showToolbar: true
-            };
-        },
-        computed: {
-            ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
-        },
 
-        methods: {
+  <script>
+  import { mapActions, mapMutations  } from "vuex";
+  export default {
+    components: {
+      ToolbarButton,
+    },
+    data: function () {
+        return {
+            showToolbar: true
+        };
+    },
+    computed: {
+        ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
+    },
+    methods: {
             ...mapMutations(["toggleEditOptionXMLForm"]),
             ...mapMutations(["toggleFeatureXMLForm"]),
             /**
@@ -68,7 +66,8 @@
               console.log("Called demoteButton");
             }
           }
-        }
+  };
+
   </script>
   
 <style>
