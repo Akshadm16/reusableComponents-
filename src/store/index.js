@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 const store = createStore({
 state : {
     // initial state
+    featureXMLForm: false,
     formData: {
         name: '',
         email: '',
@@ -14,13 +15,19 @@ state : {
 mutations : {
 updateFormData(state, payload) {
         state.formData = { ...state.formData, ...payload };
-    }
+    },
+    toggleFeatureXML: function (state) {
+        state.featureXMLForm = !state.featureXMLForm;
+    },
 },
 
 actions : {
     updateFormData({ commit }, payload) {
         commit('updateFormData', payload);
-    }
+    },
+    toggleFeatureXMLForm: function (context) {
+        context.commit("toggleFeatureXML");
+    },
 },
 getters : {
     formData: state => state.formData

@@ -6,18 +6,19 @@
       <toolbarComponent @open-form="showForm = true" />
       <v-container>
         <!-- Your main content here -->
+        <CreateForm />
       </v-container>
 
-      <v-dialog v-model="showForm" max-width="600px">
-        <CreateForm />
-      </v-dialog>
+       
+      
     </v-main>
   </v-app>
 </template>
 
 <script>
-import toolbarComponent from './components/toolbarComponent.vue';
 import CreateForm from './components/CreateForm.vue';
+import toolbarComponent from './components/toolbarComponent.vue';
+
 
 export default {
   components: {
