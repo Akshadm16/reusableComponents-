@@ -9,15 +9,17 @@ state : {
         name: '',
         email: '',
         message: ''
-    }
+    },
+    isValidForm : false
 },
 
 mutations : {
 updateFormData(state, payload) {
         state.formData = { ...state.formData, ...payload };
     },
-    toggleFeatureXML: function (state) {
-        state.featureXMLForm = !state.featureXMLForm;
+    toggleFeatureXMLForm: function (state) {
+        console.log("Mutation entry")
+        state.isValidForm = !state.isValidForm;
     },
 },
 
@@ -26,7 +28,7 @@ actions : {
         commit('updateFormData', payload);
     },
     toggleFeatureXMLForm: function (context) {
-        context.commit("toggleFeatureXML");
+        context.commit("toggleFeatureXMLForm");
     },
 },
 getters : {

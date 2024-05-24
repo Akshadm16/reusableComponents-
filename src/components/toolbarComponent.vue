@@ -7,13 +7,13 @@
           <ToolbarButton
             :icon="'mdi-asterisk'"
             :title="'Create Change Request'"
-            :action="OpenFeatureForm"
+            :action="OpenForm"
           />
           <div class="separationBar"></div>
           <ToolbarButton
             :icon="'mdi-plus'"
             :title="'Create Change Request'"
-            :action="OpenFeatureForm"
+            :action="OpenForm"
           />
           <div class="separationBar"></div>
           <ToolbarButton
@@ -29,31 +29,46 @@
         </v-slide-group>
       </v-sheet>
     </div>
-  </div>
-</template>
+    </div>
+  </template>
 
-<script>
-import { mapActions } from 'vuex';
-import ToolbarButton from './ToolbarButton.vue';
+  <script>
+  import { mapActions, mapMutations  } from "vuex";
+  export default {
+    components: {
+      ToolbarButton,
+    },
+    data: function () {
+        return {
+            showToolbar: true
+        };
+    },
+    computed: {
+        ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
+    },
+    methods: {
+            ...mapMutations(["toggleEditOptionXMLForm"]),
+            ...mapMutations(["toggleFeatureXMLForm"]),
+            /**
+             * Function to call Action that open properties page
+             */
+            displayProperties: function () {
+                this.openDisplayProperties();
+            },
+            OpenForm: function () {
+          console.log("Tool bar entry")
+            this.toggleFeatureXMLForm()
+        },
+        flag() {
+              console.log("Called flag");
+            },
+            demoteButton() {
+              console.log("Called demoteButton");
+            }
+          }
+  };
 
-export default {
-  components: {
-    ToolbarButton,
-  },
-  methods: {
-    ...mapActions(['toggleFeatureXMLForm']),
-    OpenFeatureForm() {
-      this.toggleFeatureXMLForm();
-    },
-    flag() {
-      console.log("Called flag");
-    },
-    demoteButton() {
-      console.log("Called demoteButton");
-    }
-  },
-};
-</script>
+  </script>
   
 <style>
 #ToolbarContainer {
