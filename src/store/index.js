@@ -19,7 +19,11 @@ state : {
     formLabel: {
         label: "",
         name: "",
-        description: ""
+        description: "",
+        buttons: {
+            yes: "",
+            no: ""
+        }
     },
     
     isValidForm : false

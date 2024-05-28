@@ -1,5 +1,3 @@
-<!-- src/components/CreateForm.vue -->
-
 <template>
   <v-dialog v-model="isValidForm"  max-width="500">
         <v-card v-if="isValidForm" id="featureXMLForm">
@@ -38,8 +36,8 @@
             <v-divider />
             <v-card-actions>
                 <v-spacer />
-                <v-btn color="#42a2da" type="submit" :disabled="!isValidForm" @click="submitForm">{{ ("OK") }}</v-btn>
-                <v-btn @click="closeForm" color="#e01b3c">{{ ("Cancel") }}</v-btn>
+                <v-btn color="#42a2da" type="submit" :disabled="!isValidForm" @click="submitForm">{{ formLabel.buttons.yes }}</v-btn>
+                <v-btn @click="closeForm" color="#e01b3c">{{ formLabel.buttons.no }}</v-btn>
             </v-card-actions>
         </v-card>
       </v-dialog>

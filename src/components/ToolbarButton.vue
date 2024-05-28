@@ -1,4 +1,3 @@
-<!-- src/components/ToolbarButton.vue -->
 <template>
     <v-slide-group-item>
       <v-btn icon variant="text" @click="handleClick">

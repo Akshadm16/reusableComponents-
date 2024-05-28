@@ -1,4 +1,3 @@
-<!-- src/components/Toolbar.vue -->
 <template>
   <div id="ToolbarContainer">
     <div id="Toolbar">
@@ -40,7 +39,11 @@ export default {
         isValidForm: true,
         label: "Create Feature XML",
         name: "Email",
-        description: "Description"
+        description: "Description",
+        buttons: {
+          yes: "OK",
+          no: "Cancel"
+        }
       })
     },
     openOptionForm: function () {
@@ -50,7 +53,11 @@ export default {
         isValidForm: true,
         label: "Create Option XML",
         name: "Name",
-        description: "Description"
+        description: "Description",
+        buttons: {
+          yes: "Submit",
+          no: "Cancel"
+        }
       })
     },
   }
