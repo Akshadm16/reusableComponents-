@@ -4,13 +4,13 @@
   <v-dialog v-model="isValidForm"  max-width="500">
         <v-card v-if="isValidForm" id="featureXMLForm">
             <v-card-title class="d-flex justify-space-between align-center">
-                <div class="text-medium-emphasis ps-2 title">{{ ("Create Feature XML") }}</div>
+                <div class="text-medium-emphasis ps-2 title">{{ formLabel.label }}</div>
                 <v-btn icon="mdi-close" variant="text" @click="closeForm" color="red" />
             </v-card-title>
             <v-divider />
             <v-card-text>
                 <v-form ref="featureOption" fast-fail v-model="isValidForm">
-                    <label for="name">{{ ("Name") }}</label>
+                    <label for="name">{{ formLabel.name}}</label>
                     <v-text-field
                         v-model="formValues.name"
                         variant="outlined"
@@ -23,7 +23,7 @@
                     />
                     <label for="type">{{ ("Type") }}</label>
                     <v-text-field variant="outlined" disabled density="compact">{{ ("Feature XML Type") }}</v-text-field>
-                    <label for="description">{{ ("Description") }}</label>
+                    <label for="description"> {{ formLabel.description }}</label>
                     <v-textarea
                         variant="outlined"
                         rows="3"
@@ -49,37 +49,27 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
-  
+  import { nameRules, descriptionRules } from '../store/index'; 
   export default {
     data() {
         return {
-            formValues: {
-                name: "",
-                description: ""
-            },
-
-           
-
-            // nameRules: [v => !!v || this.$t("Name is required"), v => /^[A-Z0-9._-]*$/.test(v) || this.$t("rules for name")],
-            // descriptionRules: [v => !!v || this.$t("Description is required"), v => !v.includes("~") || this.$t("rule for desc")]
+          nameRules,
+          descriptionRules
         };
     },
     computed: {
-      ...mapState(["featureXMLForm", "isValidForm"])
+      ...mapState(["featureXMLForm", "isValidForm", "formValues", "formLabel"])
     },
     methods: {
       ...mapActions(['toggleFeatureXMLForm']),
-      updateFormData(event) {
-        const { name, value } = event.target;
-        this.updateFormData({ [name]: value });
-      },
       submitForm() {
-        console.log(this.formData);
-        // handle form submission here
+        if (this.isValidForm) {
+        console.log(this.formValues);
+        this.closeForm();
+        }
       },
       closeForm: function () {
             this.toggleFeatureXMLForm();
-            this.$refs.featureOption.reset();
         }
     }
   };

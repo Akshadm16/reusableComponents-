@@ -1,32 +1,45 @@
 import { createStore } from 'vuex';
 
-// Define your state, mutations, actions, and getters here
+export const nameRules = [
+  v => !!v || 'Name is required',
+  v => /^[A-Za-z]*$/.test(v) || 'Only alphabets are allowed'
+];
+
+export const descriptionRules = [
+  v => !!v || 'Description is required',
+  v => !v.includes("~") || 'Description must not contain the character ~'
+];
 const store = createStore({
 state : {
-    // initial state
     featureXMLForm: false,
-    formData: {
-        name: '',
-        email: '',
-        message: ''
+    formValues: {
+        name: "",
+        description: "",
     },
+    formLabel: {
+        label: "",
+        name: "",
+        description: ""
+    },
+    
     isValidForm : false
 },
 
 mutations : {
 updateFormData(state, payload) {
-        state.formData = { ...state.formData, ...payload };
+        console.log("UpadteFromDAta",payload);
+        state.formLabel = payload;
+        state.isValidForm = payload.isValidForm;
+        
     },
     toggleFeatureXMLForm: function (state) {
         console.log("Mutation entry")
         state.isValidForm = !state.isValidForm;
+       
     },
 },
 
 actions : {
-    updateFormData({ commit }, payload) {
-        commit('updateFormData', payload);
-    },
     toggleFeatureXMLForm: function (context) {
         context.commit("toggleFeatureXMLForm");
     },
