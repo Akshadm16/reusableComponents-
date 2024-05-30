@@ -12,9 +12,12 @@
           <v-slide-group-item>
             <v-btn icon variant="text" @click="onClickCreateOption">
               <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
+          <v-slide-group-item v-for="(button, index) in buttons" :key="index">
+            <v-btn icon variant="text" @click="handleButtonClick(button)">
+              <v-icon size="small" :color="color" :title="button.title">{{ button.icon }}</v-icon>
             </v-btn>
+            <div v-if="index < buttons.length - 1" class="separationBar"></div>
           </v-slide-group-item>
-          <div class="separationBar"></div>
         </v-slide-group>
       </v-sheet>
     </div>
@@ -26,10 +29,13 @@ import { mapState, mapMutations } from "vuex";
 import createFeatureFields from '../static/createFeatureFields.json';
 import createOptionFields from '../static/createOptionFields.json';
 
+import toolbarButtons from '../static/toolbarButton.json';
+
 export default {
   data: function () {
     return {
-      showToolbar: true
+      showToolbar: true,
+      buttons: toolbarButtons.buttons
     };
   },
   computed: {
@@ -58,6 +64,11 @@ export default {
         formFields:FieldData
       })
     },
+    handleButtonClick(button) {
+      if (button.method && this[button.method]) {
+        this[button.method](button.fields);
+      }
+    }
   }
 };
 

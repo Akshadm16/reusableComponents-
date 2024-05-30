@@ -1,0 +1,29 @@
+{
+    "buttons": [
+      {
+        "icon": "mdi-asterisk",
+        "title": "Create Feature",
+        "method": "onClickCreateFeature",
+        "fields": [
+          
+        ]
+      },
+      {
+        "icon": "mdi-asterisk",
+        "title": "Create Option",
+        "method": "onClickCreateOption",
+        "fields": [
+          
+        ]
+      },
+      {
+        "icon": "mdi-plus",
+        "title": "Create Option",
+        "method": "onClickCreateOption",
+        "fields": [
+          
+        ]
+      }
+    ]
+  }
+  
