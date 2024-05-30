@@ -17,8 +17,6 @@
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar"></div>
-          <ToolbarButton :icon="'mdi-close'" :title="'Create Change Request'" :action="flag" />
-          <ToolbarButton :icon="'mdi-pencil'" :title="'Create Change Request'" :action="demoteButton" />
         </v-slide-group>
       </v-sheet>
     </div>
@@ -27,15 +25,12 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import ToolbarButton from './ToolbarButton.vue';
+
 import createFeatureFields from '../static/createFeatureFields.json';
 import createOptionFields from '../static/createOptionFields.json';
 
 
 export default {
-  components: {
-    ToolbarButton,
-  },
   data: function () {
     return {
       showToolbar: true
