@@ -3,14 +3,12 @@
     <div id="Toolbar">
       <v-sheet max-width="400">
         <v-slide-group multiple show-arrows>
-       
           <v-slide-group-item>
             <v-btn icon variant="text" @click="onClickCreateFeature">
               <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar"></div>
-          
           <v-slide-group-item>
             <v-btn icon variant="text" @click="onClickCreateOption">
               <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
@@ -25,10 +23,8 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-
 import createFeatureFields from '../static/createFeatureFields.json';
 import createOptionFields from '../static/createOptionFields.json';
-
 
 export default {
   data: function () {

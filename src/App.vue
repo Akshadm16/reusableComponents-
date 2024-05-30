@@ -6,9 +6,6 @@
         <CreateForm />
         <listTable/>
       </v-container>
-
-       
-      
     </v-main>
   </v-app>
 </template>
@@ -17,8 +14,6 @@
 import CreateForm from './components/CreateForm.vue';
 import listTable from './components/listTable.vue';
 import toolbarComponent from './components/toolbarComponent.vue';
-
-
 
 export default {
   components: {
