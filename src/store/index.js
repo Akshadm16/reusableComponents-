@@ -1,29 +1,9 @@
 import { createStore } from 'vuex';
-
-export const nameRules = [
-  v => !!v || 'Name is required',
-  v => /^[A-Za-z]*$/.test(v) || 'Only alphabets are allowed'
-];
-
-export const descriptionRules = [
-  v => !!v || 'Description is required',
-  v => !v.includes("~") || 'Description must not contain the character ~'
-];
 const store = createStore({
 state : {
     featureXMLForm: false,
-    formValues: {
-        name: "",
-        description: "",
-    },
-    formLabel: {
-        label: "",
-        name: "",
-        description: "",
-        buttons: {
-            yes: "",
-            no: ""
-        }
+    formConfig:{
+        formFields:{}
     },
     
     isValidForm : false
@@ -31,8 +11,10 @@ state : {
 
 mutations : {
 updateFormData(state, payload) {
+    //const {formConfig} = state;
         console.log("UpadteFromDAta",payload);
-        state.formLabel = payload;
+        state.formConfig = payload ;
+        
         state.isValidForm = payload.isValidForm;
         
     },

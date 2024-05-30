@@ -2,42 +2,58 @@
   <v-dialog v-model="isValidForm"  max-width="500">
         <v-card v-if="isValidForm" id="featureXMLForm">
             <v-card-title class="d-flex justify-space-between align-center">
-                <div class="text-medium-emphasis ps-2 title">{{ formLabel.label }}</div>
+                <div class="text-medium-emphasis ps-2 title">{{ formConfig.formFields.form.title }}</div>
                 <v-btn icon="mdi-close" variant="text" @click="closeForm" color="red" />
             </v-card-title>
             <v-divider />
             <v-card-text>
                 <v-form ref="featureOption" fast-fail v-model="isValidForm">
-                    <label for="name">{{ formLabel.name}}</label>
-                    <v-text-field
-                        v-model="formValues.name"
+                 <div v-for="field in formConfig.formFields.form.fields" :key="field.name">
+                    <div v-if="field.type==='textfield'">
+                      <label for="name">{{ field.label}}</label>
+                      <v-text-field  
+                        :type="field.type"
                         variant="outlined"
-                        :rules="nameRules"
                         class="mb-3"
-                        maxLength="10"
-                        required
                         id="featureName"
                         density="compact"
                     />
-                    <label for="type">{{ ("Type") }}</label>
-                    <v-text-field variant="outlined" disabled density="compact">{{ ("Feature XML Type") }}</v-text-field>
-                    <label for="description"> {{ formLabel.description }}</label>
-                    <v-textarea
+                    </div>
+                    <div v-else-if="field.type==='textarea'">
+                      <label for="name">{{ field.label}}</label>
+                      <v-textarea  
                         variant="outlined"
-                        rows="3"
-                        maxLength="100"
-                        v-model="formValues.description"
-                        :rules="descriptionRules"
-                        required
+                        class="mb-3"
+                        id="featureName"
                         density="compact"
                     />
+                    </div>
+                    <div v-else-if="field.type==='checkbox'" class="d-flex align-center">
+                      <v-checkbox
+                        :label="field.label"
+                        variant="outlined"
+                        class="mb-3"
+                        id="featureName"
+                        density="compact"
+                    />
+                    </div>
+                    <div v-else-if="field.type==='dropdown'">
+                      <label for="name">{{ field.label}}</label>
+                      <v-select
+                        variant="outlined"
+                        class="mb-3"
+                        id="featureName"
+                        density="compact"
+                    />
+                    </div>
+                   </div>
                 </v-form>
             </v-card-text>
             <v-divider />
             <v-card-actions>
                 <v-spacer />
-                <v-btn color="#42a2da" type="submit" :disabled="!isValidForm" @click="submitForm">{{ formLabel.buttons.yes }}</v-btn>
-                <v-btn @click="closeForm" color="#e01b3c">{{ formLabel.buttons.no }}</v-btn>
+                <v-btn color="#42a2da" type="button" :disabled="!isValidForm" @click="submitForm">{{ formConfig.buttons.yes}}</v-btn>
+                <v-btn @click="closeForm" color="#e01b3c">{{ formConfig.buttons.no }}</v-btn>
             </v-card-actions>
         </v-card>
       </v-dialog>
@@ -46,17 +62,13 @@
 
   
   <script>
-  import { mapState, mapActions } from 'vuex';
-  import { nameRules, descriptionRules } from '../store/index'; 
+  import { mapState, mapActions } from 'vuex'; 
+  
+  
   export default {
-    data() {
-        return {
-          nameRules,
-          descriptionRules
-        };
-    },
+   
     computed: {
-      ...mapState(["featureXMLForm", "isValidForm", "formValues", "formLabel"])
+      ...mapState(["featureXMLForm", "isValidForm", "formValues", "formLabel", "formConfig"])
     },
     methods: {
       ...mapActions(['toggleFeatureXMLForm']),

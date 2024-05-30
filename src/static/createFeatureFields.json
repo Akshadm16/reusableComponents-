@@ -1,0 +1,54 @@
+{
+    "form": {
+      "title": "Create Feature XML",
+      "description": "This is a sample form with different types of fields.",
+      "fields": [
+        {
+          "type": "textfield",
+          "label": "Name",
+          "name": "name",
+          "placeholder": "Enter your name",
+          "required": true
+        },
+        {
+          "type": "textfield",
+          "label": "Email",
+          "name": "email",
+          "placeholder": "Enter your email",
+          "required": true
+        },
+        {
+          "type": "textarea",
+          "label": "Message",
+          "name": "message",
+          "placeholder": "Enter your message",
+          "required": false
+        },
+        {
+          "type": "dropdown",
+          "label": "Country",
+          "name": "country",
+          "options": [
+            { "label": "USA", "value": "usa" },
+            { "label": "Canada", "value": "canada" },
+            { "label": "Australia", "value": "australia" }
+          ],
+          "required": true
+        },
+        {
+          "type": "checkbox",
+          "label": "Subscribe to newsletter",
+          "name": "subscribe",
+          "required": false
+        },
+        {
+          "type": "button",
+          "buttons":{
+            "yes": "OK",
+            "no": "Cancel"
+          }
+        }
+      ]
+    }
+  }
+  

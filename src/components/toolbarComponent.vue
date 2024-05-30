@@ -3,9 +3,19 @@
     <div id="Toolbar">
       <v-sheet max-width="400">
         <v-slide-group multiple show-arrows>
-          <ToolbarButton :icon="'mdi-asterisk'" :title="'Create Change Request'" :action="OpenForm" />
+       
+          <v-slide-group-item>
+            <v-btn icon variant="text" @click="onClickCreateFeature">
+              <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
+            </v-btn>
+          </v-slide-group-item>
           <div class="separationBar"></div>
-          <ToolbarButton :icon="'mdi-plus'" :title="'Create Change Request'" :action="openOptionForm" />
+          
+          <v-slide-group-item>
+            <v-btn icon variant="text" @click="onClickCreateOption">
+              <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
+            </v-btn>
+          </v-slide-group-item>
           <div class="separationBar"></div>
           <ToolbarButton :icon="'mdi-close'" :title="'Create Change Request'" :action="flag" />
           <ToolbarButton :icon="'mdi-pencil'" :title="'Create Change Request'" :action="demoteButton" />
@@ -17,7 +27,11 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import ToolbarButton from './ToolbarButton.vue'
+import ToolbarButton from './ToolbarButton.vue';
+import createFeatureFields from '../static/createFeatureFields.json';
+import createOptionFields from '../static/createOptionFields.json';
+
+
 export default {
   components: {
     ToolbarButton,
@@ -32,32 +46,25 @@ export default {
   },
   methods: {
     ...mapMutations(["featureXMLForm", "optionXMLForm", "updateFormData"]),
-    OpenForm: function () {
+
+    onClickCreateFeature(){
+      this.OpenForm(createFeatureFields)
+    },
+    onClickCreateOption(){
+      this.OpenForm(createOptionFields)
+    },
+
+
+    OpenForm: function (FieldData) {
       console.log("Tool bar entry")
     
       this.updateFormData({
         isValidForm: true,
-        label: "Create Feature XML",
-        name: "Email",
-        description: "Description",
         buttons: {
           yes: "OK",
           no: "Cancel"
-        }
-      })
-    },
-    openOptionForm: function () {
-      console.log("Tool bar entry")
-    
-      this.updateFormData({
-        isValidForm: true,
-        label: "Create Option XML",
-        name: "Name",
-        description: "Description",
-        buttons: {
-          yes: "Submit",
-          no: "Cancel"
-        }
+        },
+        formFields:FieldData
       })
     },
   }
