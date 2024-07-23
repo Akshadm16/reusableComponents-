@@ -3,37 +3,30 @@
     <div id="Toolbar">
       <v-sheet max-width="400">
         <v-slide-group multiple show-arrows>
-       
-          <v-slide-group-item>
-            <v-btn icon variant="text" @click="onClickCreateFeature">
-              <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
+          <v-slide-group-item v-for="(button, index) in buttons" :key="index">
+            <v-btn icon variant="text" @click="handleButtonClick(button)">
+              <v-icon size="small" :color="color" :title="button.title">{{ button.icon }}</v-icon>
             </v-btn>
+            <div v-if="index < buttons.length - 1" class="separationBar"></div>
           </v-slide-group-item>
-          <div class="separationBar"></div>
-          
-          <v-slide-group-item>
-            <v-btn icon variant="text" @click="onClickCreateOption">
-              <v-icon size="small" :color="color" title="Create Change Request">mdi-asterisk</v-icon>
-            </v-btn>
-          </v-slide-group-item>
-          <div class="separationBar"></div>
         </v-slide-group>
       </v-sheet>
     </div>
   </div>
 </template>
-
+ 
 <script>
 import { mapState, mapMutations } from "vuex";
-
+ 
 import createFeatureFields from '../static/createFeatureFields.json';
 import createOptionFields from '../static/createOptionFields.json';
-
-
+import toolbarButtons from '../static/toolbarButton.json';
+ 
 export default {
   data: function () {
     return {
-      showToolbar: true
+      showToolbar: true,
+      buttons: toolbarButtons.buttons
     };
   },
   computed: {
@@ -41,18 +34,18 @@ export default {
   },
   methods: {
     ...mapMutations(["featureXMLForm", "optionXMLForm", "updateFormData"]),
-
+ 
     onClickCreateFeature(){
       this.OpenForm(createFeatureFields)
     },
     onClickCreateOption(){
       this.OpenForm(createOptionFields)
     },
-
-
+ 
+ 
     OpenForm: function (FieldData) {
       console.log("Tool bar entry")
-    
+   
       this.updateFormData({
         isValidForm: true,
         buttons: {
@@ -62,11 +55,16 @@ export default {
         formFields:FieldData
       })
     },
+    handleButtonClick(button) {
+      if (button.method && this[button.method]) {
+        this[button.method](button.fields);
+      }
+    }
   }
 };
-
+ 
 </script>
-
+ 
 <style>
 #ToolbarContainer {
   position: fixed;
@@ -77,7 +75,7 @@ export default {
   width: 100%;
   pointer-events: none;
 }
-
+ 
 #Toolbar {
   display: flex;
   flex-direction: row;
@@ -93,11 +91,11 @@ export default {
   border-right: 1px solid #b4b6ba;
   pointer-events: all;
 }
-
+ 
 .Toolbar1 {
   background-color: #e2e4e3;
 }
-
+ 
 .separationBar {
   display: inline-block;
   background-color: #bdbdbd;
@@ -108,7 +106,7 @@ export default {
   margin-top: 10px;
   border-right: 1px solid white;
 }
-
+ 
 .hideProperties {
   -moz-filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
