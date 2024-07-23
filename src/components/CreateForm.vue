@@ -52,8 +52,8 @@
             <v-divider />
             <v-card-actions>
                 <v-spacer />
-                <v-btn color="#42a2da" type="button" :disabled="!isValidForm" @click="submitForm">{{ formConfig.buttons.yes}}</v-btn>
-                <v-btn @click="closeForm" color="#e01b3c">{{ formConfig.buttons.no }}</v-btn>
+                <v-btn color="#42a2da" type="button" :disabled="!isValidForm" @click="submitForm">{{ formConfig.buttons.OK}}</v-btn>
+                <v-btn @click="closeForm" color="#e01b3c">{{ formConfig.buttons.Cancel }}</v-btn>
             </v-card-actions>
         </v-card>
       </v-dialog>

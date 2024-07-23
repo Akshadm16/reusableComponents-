@@ -31,8 +31,8 @@
       ],
       
         "buttons":{
-          "yes": "OK",
-          "no": "Submit"
+          "OK": "OK",
+          "Cancel": "Cancel"
         }
       
     }

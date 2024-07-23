@@ -56,8 +56,8 @@ export default {
       this.updateFormData({
         isValidForm: true,
         buttons: {
-          yes: "OK",
-          no: "Cancel"
+          OK: "OK",
+          Cancel: "Cancel"
         },
         formFields:FieldData
       })

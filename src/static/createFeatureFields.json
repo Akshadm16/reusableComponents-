@@ -44,8 +44,8 @@
         {
           "type": "button",
           "buttons":{
-            "yes": "OK",
-            "no": "Cancel"
+            "OK": "OK",
+            "Cancel": "Cancel"
           }
         }
       ]
