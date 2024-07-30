@@ -1,29 +1,34 @@
 {
-    "buttons": [
-      {
-        "icon": "mdi-asterisk",
-        "title": "Create Feature",
-        "method": "onClickCreateFeature",
-        "fields": [
-          
-        ]
-      },
-      {
-        "icon": "mdi-asterisk",
-        "title": "Create Option",
-        "method": "onClickCreateOption",
-        "fields": [
-          
-        ]
-      },
-      {
-        "icon": "mdi-plus",
-        "title": "Create Option",
-        "method": "onClickCreateOption",
-        "fields": [
-          
-        ]
-      }
-    ]
-  }
-  
+  "buttons": [
+    {
+      "icon": "mdi-asterisk",
+      "title": "Create Feature",
+      "method": "onClickCreateFeature",
+      "fields": []
+    },
+    {
+      "icon": "mdi-asterisk",
+      "title": "Create Option",
+      "method": "onClickCreateOption",
+      "fields": []
+    },
+    {
+      "icon": "mdi-plus",
+      "title": "Create Option",
+      "method": "onClickChangeTable",
+      "fields": []
+    },
+    {
+      "icon": "mdi-plus",
+      "title": "Create Option",
+      "method": "onClickChangeTableFromServer",
+      "fields": []
+    },
+    {
+      "icon": "mdi-plus",
+      "title": "Create Option",
+      "method": "onClickChangeTableOriginal",
+      "fields": []
+    }
+  ]
+}

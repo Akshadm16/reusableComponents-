@@ -1,0 +1,60 @@
+{
+  "columns": [
+    {
+      "order": 3,
+      "key": "name",
+      "minWidth": 150,
+      "title": "Full Name",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 1,
+      "key": "role",
+      "minWidth": 110,
+      "title": "Rolle",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 2,
+      "key": "experience",
+      "minWidth": 110,
+      "title": "Experience",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 7,
+      "key": "dob",
+      "minWidth": 140,
+      "title": "DOB",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 4,
+      "key": "expert",
+      "minWidth": 140,
+      "title": "Expert In",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 5,
+      "key": "position",
+      "minWidth": 140,
+      "title": "Position",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 6,
+      "key": "reportingmanager",
+      "minWidth": 140,
+      "title": "Reporting Manager",
+      "align": "center",
+      "sortable": true
+    }
+  ]
+}

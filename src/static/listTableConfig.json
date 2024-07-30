@@ -1,0 +1,125 @@
+{
+  "columns": [
+    {
+      "order": 0,
+      "key": "name",
+      "minWidth": 150,
+      "title": "Name",
+      "align": "center",
+      "sortable": true,
+      "fixed": true
+    },
+    {
+      "order": 1,
+      "key": "title",
+      "minWidth": 110,
+      "title": "Title",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 2,
+      "key": "type",
+      "minWidth": 110,
+      "title": "Type",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 3,
+      "key": "revision",
+      "minWidth": 140,
+      "title": "Revision",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 4,
+      "key": "policy",
+      "minWidth": 140,
+      "title": "Policy",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 5,
+      "key": "description",
+      "minWidth": 150,
+      "title": "Description",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 6,
+      "key": "state",
+      "minWidth": 110,
+      "title": "State",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 7,
+      "key": "organization",
+      "minWidth": 160,
+      "title": "Organization",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 8,
+      "key": "itemSuppliers",
+      "minWidth": 140,
+      "title": "Suppliers",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 9,
+      "key": "owner",
+      "minWidth": 110,
+      "title": "Owner",
+      "align": "center",
+      "sortable": false
+    },
+    {
+      "order": 10,
+      "key": "itemProgram",
+      "minWidth": 140,
+      "title": "Program",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 11,
+      "key": "itemPROD",
+      "minWidth": 140,
+      "title": "Product",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 12,
+      "key": "itemCountry",
+      "minWidth": 140,
+      "title": "Country",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 13,
+      "key": "itemCustomerItem",
+      "minWidth": 110,
+      "title": "Customer",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 14,
+      "key": "itemStocking",
+      "minWidth": 150,
+      "title": "Item Stocking",
+      "align": "center",
+      "sortable": true
+    }
+  ]
+}

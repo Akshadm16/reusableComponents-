@@ -1,11 +1,13 @@
 <template>
   <div id="ToolbarContainer">
     <div id="Toolbar">
-      <v-sheet max-width="400">
+      <v-sheet max-width="300">
         <v-slide-group multiple show-arrows>
           <v-slide-group-item v-for="(button, index) in buttons" :key="index">
             <v-btn icon variant="text" @click="handleButtonClick(button)">
-              <v-icon size="small" :color="color" :title="button.title">{{ button.icon }}</v-icon>
+              <v-icon size="small" :color="color" :title="button.title">{{
+                button.icon
+              }}</v-icon>
             </v-btn>
             <div v-if="index < buttons.length - 1" class="separationBar"></div>
           </v-slide-group-item>
@@ -14,57 +16,98 @@
     </div>
   </div>
 </template>
- 
+
 <script>
-import { mapState, mapMutations } from "vuex";
- 
-import createFeatureFields from '../static/createFeatureFields.json';
-import createOptionFields from '../static/createOptionFields.json';
-import toolbarButtons from '../static/toolbarButton.json';
- 
+import { mapState, mapMutations, mapActions } from "vuex";
+
+import createFeatureFields from "../static/createFeatureFields.json";
+import createOptionFields from "../static/createOptionFields.json";
+import toolbarButtons from "../static/toolbarButton.json";
+
 export default {
   data: function () {
     return {
       showToolbar: true,
-      buttons: toolbarButtons.buttons
+      buttons: toolbarButtons.buttons,
     };
   },
   computed: {
-    ...mapState(["widgetBaseURL", "optionXMLSelectedList", "confirmDialog", "beforeEditValues", "selectedFeatureXMLRow"])
+    ...mapState([
+      "widgetBaseURL",
+      "optionXMLSelectedList",
+      "confirmDialog",
+      "beforeEditValues",
+      "selectedFeatureXMLRow",
+    ]),
   },
   methods: {
-    ...mapMutations(["featureXMLForm", "optionXMLForm", "updateFormData"]),
- 
-    onClickCreateFeature(){
-      this.OpenForm(createFeatureFields)
+    ...mapMutations([
+      "featureXMLForm",
+      "optionXMLForm",
+      "updateFormData",
+      "updateTable",
+    ]),
+    ...mapActions(["tableDataFromServer"]),
+
+    onClickCreateFeature() {
+      this.OpenForm(createFeatureFields);
     },
-    onClickCreateOption(){
-      this.OpenForm(createOptionFields)
+    onClickCreateOption() {
+      this.OpenForm(createOptionFields);
     },
- 
- 
+
+    onClickChangeTable() {
+      console.log("Table called");
+      const TableInfo = {
+        tableHeaders: require("../static/listTableConfig1.json"),
+        tableData: require("../static/tableInfo1.json"),
+        TableName: "User Details",
+        selectStrategy: "page",
+        searchField: {
+          isSearchRequired: true,
+          searchLabel: "Search with Full name",
+        },
+      };
+      this.updateTable(TableInfo);
+    },
+    onClickChangeTableFromServer() {
+      this.tableDataFromServer();
+    },
+    onClickChangeTableOriginal() {
+      const TableInfo = {
+        tableHeaders: require("../static/listTableConfig.json"),
+        tableData: require("../static/tableInfo.json"),
+        TableName: "Reusable Table",
+        selectStrategy: "single",
+        searchField: {
+          isSearchRequired: true,
+          searchLabel: "Search with tag name",
+        },
+      };
+      this.updateTable(TableInfo);
+    },
+
     OpenForm: function (FieldData) {
-      console.log("Tool bar entry")
-   
+      console.log("Tool bar entry");
+
       this.updateFormData({
         isValidForm: true,
         buttons: {
           OK: "OK",
-          Cancel: "Cancel"
+          Cancel: "Cancel",
         },
-        formFields:FieldData
-      })
+        formFields: FieldData,
+      });
     },
     handleButtonClick(button) {
       if (button.method && this[button.method]) {
         this[button.method](button.fields);
       }
-    }
-  }
+    },
+  },
 };
- 
 </script>
- 
+
 <style>
 #ToolbarContainer {
   position: fixed;
@@ -75,7 +118,7 @@ export default {
   width: 100%;
   pointer-events: none;
 }
- 
+
 #Toolbar {
   display: flex;
   flex-direction: row;
@@ -91,11 +134,11 @@ export default {
   border-right: 1px solid #b4b6ba;
   pointer-events: all;
 }
- 
+
 .Toolbar1 {
   background-color: #e2e4e3;
 }
- 
+
 .separationBar {
   display: inline-block;
   background-color: #bdbdbd;
@@ -106,12 +149,12 @@ export default {
   margin-top: 10px;
   border-right: 1px solid white;
 }
- 
+
 .hideProperties {
   -moz-filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
-  opacity: .5;
-  opacity: .4;
+  opacity: 0.5;
+  opacity: 0.4;
 }
 </style>
