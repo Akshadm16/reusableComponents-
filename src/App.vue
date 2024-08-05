@@ -1,34 +1,32 @@
-
-<!-- src/App.vue -->
 <template>
   <v-app>
-    <v-main>
+    <v-main style="min-height: 100vh">
       <toolbarComponent @open-form="showForm = true" />
-      <v-container>
-        <!-- Your main content here -->
-      </v-container>
-
-      <v-dialog v-model="showForm" max-width="600px">
-        <CreateForm @close-form="showForm = false" />
-      </v-dialog>
+      <CreateForm />
+      <!-- <listTable /> -->
+      <TablePage />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import toolbarComponent from './components/toolbarComponent.vue';
-import CreateForm from './components/CreateForm.vue';
+import CreateForm from "./components/CreateForm.vue";
+// import listTable from "./components/listTable.vue";
+import TablePage from "./components/TablePage.vue";
+import toolbarComponent from "./components/toolbarComponent.vue";
 
 export default {
   components: {
     toolbarComponent,
-    CreateForm
+    CreateForm,
+    // listTable,
+    TablePage,
   },
   data() {
     return {
-      showForm: false
+      showForm: false,
     };
-  }
+  },
 };
 </script>
 

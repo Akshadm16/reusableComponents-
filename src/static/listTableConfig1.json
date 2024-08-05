@@ -1,0 +1,36 @@
+{
+  "columns": [
+    {
+      "order": 0,
+      "key": "name",
+      "minWidth": 150,
+      "title": "Full Name",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 1,
+      "key": "address",
+      "minWidth": 110,
+      "title": "Address",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 2,
+      "key": "age",
+      "minWidth": 110,
+      "title": "Age",
+      "align": "center",
+      "sortable": true
+    },
+    {
+      "order": 3,
+      "key": "dob",
+      "minWidth": 140,
+      "title": "DOB",
+      "align": "center",
+      "sortable": true
+    }
+  ]
+}

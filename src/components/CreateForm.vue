@@ -1,3 +1,4 @@
+<!-- src/components/CreateForm.vue -->
 <template>
   <v-card id="featureXMLForm">
     <v-card-title class="d-flex justify-space-between align-center">
@@ -31,7 +32,7 @@
           density="compact"
           id="featureDescription"
         />
-      </v-form>
+        </v-form>
     </v-card-text>
     <v-divider />
     <v-card-actions>
@@ -74,7 +75,7 @@ export default {
         this.$emit('close-form');
       }
     }
-  }
+    }
 };
 </script>
 

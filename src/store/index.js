@@ -1,15 +1,13 @@
-import { createStore } from 'vuex';
-
-// Define your state, mutations, actions, and getters here
+import { createStore } from "vuex";
 const store = createStore({
-state : {
+  state: {
     // initial state
     featureXMLForm: false,
     formData: {
         name: '',
         type: '',
         description: ''
-        
+
     },
     confirmDialog: {
        visible: false,
@@ -21,84 +19,44 @@ state : {
         isconfirmed: false,
         callback: null
     }
-    
-},
 
-mutations : {
-updateFormData(state, payload) {
-        state.formData = { ...state.formData, ...payload };
-    },
-    toggleFeatureXML: function (state) {
-        state.featureXMLForm = !state.featureXMLForm;
+    featureXMLForm: false,
+    formConfig: {
+      formFields: {},
     },
 
-    // showHideConfirm: function (state, confirmationDialog) {
-    //     if (confirmationDialog?.visible) {
-    //         state.confirmDialog.visible = confirmationDialog.visible;
-    //         // if (confirmationDialog?.header && confirmationDialog?.message) {
-    //         //     state.confirmDialog.header = confirmationDialog.header;
-    //         //     state.confirmDialog.message = confirmationDialog.message;
-    //         // }
-    //         if (confirmationDialog.buttons) {
-    //             if (confirmationDialog.buttons.yes) {
-    //                 state.confirmDialog.buttons.yes = confirmationDialog.buttons.yes;
-    //             } else {
-    //                 state.confirmDialog.buttons.yes = "name";
-    //             }
-    //             if (confirmationDialog.buttons.no) {
-    //                 state.confirmDialog.buttons.no = confirmationDialog.buttons.no;
-    //             } else {
-    //                 state.confirmDialog.buttons.no = "type";
-    //             }
-    //         } else {
-    //             state.confirmDialog.buttons.yes = "name";
-    //             state.confirmDialog.buttons.no = "type";
-    //         }
-    //     } else {
-    //         state.confirmDialog.visible = false;
-    //         state.confirmDialog.header = confirmationDialog.header;
-    //          state.confirmDialog.header = "description";
-    //         // state.confirmDialog.message = "Do Proceed?";
-    //         state.confirmDialog.buttons.yes = "name";
-    //         state.confirmDialog.buttons.no = "type";
-    //     }
+    isValidForm: false,
+    TableDetails: {
+      tableHeaders: require("../static/listTableConfig.json"),
+      tableData: require("../static/tableInfo.json"),
+      TableName: "Reusable Table",
+      selectStrategy: "all",
+      searchField: {
+        isSearchRequired: true,
+        searchLabel: "Search with tag name",
+      },
+    },
 
-    //     if (confirmationDialog.isconfirmed) {
-    //         state.confirmDialog.isconfirmed = confirmationDialog.isconfirmed;
-    //         return;
-    //     } else {
-    //         state.confirmDialog.isconfirmed = false;
-    //     }
+    selectedRows: [],
+  },
 
-    //     if (confirmationDialog.callback) {
-    //         state.confirmDialog.callback = confirmationDialog.callback;
-    //     } else {
-    //         state.confirmDialog.callback = null;
-    //     }
-    // },
-    showHideConfirm(state, confirmationDialog) {
-        if (confirmationDialog?.visible) {
-            state.confirmDialog.visible = confirmationDialog.visible;
-            if (confirmationDialog.buttons) {
-                state.confirmDialog.buttons.yes = confirmationDialog.buttons.yes;
-                state.confirmDialog.buttons.no = confirmationDialog.buttons.no;
-            } else {
-                state.confirmDialog.buttons.yes = "name";
-                state.confirmDialog.buttons.no = "type";
-            }
-        } else {
-            state.confirmDialog.visible = false;
-            state.confirmDialog.header = "description";
-            state.confirmDialog.buttons.yes = "name";
-            state.confirmDialog.buttons.no = "type";
-        }
+  mutations: {
+    updateFormData(state, payload) {
+      //const {formConfig} = state;
+      state.formData = { ...state.formData, ...payload };
+         },
+    toggleFeatureXMLForm: function (state) {
+      console.log("Mutation entry");
+      state.isValidForm = !state.isValidForm;
+    },
+    updateTable: function (state, data) {
+      state.selectedRows = [];
+      console.log("Table Data", data);
+      state.TableDetails = data;
+    },
+  },
 
-        state.confirmDialog.isconfirmed = !!confirmationDialog?.isconfirmed;
-        state.confirmDialog.callback = confirmationDialog?.callback || null;
-    }
-},
-
-actions : {
+  actions: {
     updateFormData({ commit }, payload) {
         commit('updateFormData', payload);
     },
@@ -108,10 +66,25 @@ actions : {
     showHideConfirm: function (context, confirmationDialog) {
         context.commit("showHideConfirm", confirmationDialog);
     },
-},
-getters : {
-    formData: state => state.formData
-}
+    toggleFeatureXMLForm: function (context) {
+      context.commit("toggleFeatureXMLForm");
+    },
+    tableDataFromServer: function (context) {
+      const dataFromServer = require("../static/tableInfo2.json"); // { } { TableData : serevrdata}
+      const header = require("../static/listTableConfig2.json");
+      const tableData = {
+        tableData: dataFromServer,
+        tableHeaders: header,
+        TableName: "Server Table",
+        selectStrategy: "all",
+        searchField: {
+          isSearchRequired: false,
+          searchLabel: "",
+        },
+      };
+      context.commit("updateTable", tableData);
+    },
+  },
 });
 
 export default store;

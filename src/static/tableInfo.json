@@ -1,0 +1,55 @@
+{
+  "TableData": [
+    {
+      "name": "Item A",
+      "title": "Widget A",
+      "type": "Hardware",
+      "revision": "Rev 1",
+      "policy": "Standard",
+      "description": "A basic widget",
+      "state": "Active",
+      "organization": "Org 1",
+      "itemSuppliers": "Supplier A",
+      "owner": "John Doe",
+      "itemProgram": "Program X",
+      "itemPROD": "Product Line 1",
+      "itemCountry": "USA",
+      "itemCustomerItem": "Customer A",
+      "itemStocking": "In Stock"
+    },
+    {
+      "name": "Item B",
+      "title": "Widget B",
+      "type": "Software",
+      "revision": "Rev 2",
+      "policy": "Premium",
+      "description": "A premium widget",
+      "state": "Inactive",
+      "organization": "Org 2",
+      "itemSuppliers": "Supplier B",
+      "owner": "Jane Smith",
+      "itemProgram": "Program Y",
+      "itemPROD": "Product Line 2",
+      "itemCountry": "Canada",
+      "itemCustomerItem": "Customer B",
+      "itemStocking": "Out of Stock"
+    },
+    {
+      "name": "Item C",
+      "title": "Gadget C",
+      "type": "Hardware",
+      "revision": "Rev 3",
+      "policy": "Standard",
+      "description": "A versatile gadget",
+      "state": "Active",
+      "organization": "Org 3",
+      "itemSuppliers": "Supplier C",
+      "owner": "Alice Johnson",
+      "itemProgram": "Program Z",
+      "itemPROD": "Product Line 3",
+      "itemCountry": "Australia",
+      "itemCustomerItem": "Customer C",
+      "itemStocking": "Limited Stock"
+    }
+  ]
+}

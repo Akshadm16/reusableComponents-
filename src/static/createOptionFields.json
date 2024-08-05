@@ -1,0 +1,40 @@
+{
+    "form": {
+      "title": "Create Option XML",
+      "description": "This is a sample form with different types of fields.",
+      "fields": [
+        {
+          "type": "textfield",
+          "label": "Option XML",
+          "name": "name",
+          "placeholder": "Enter your name",
+          "required": true
+        },
+        {
+          "type": "dropdown",
+          "label": "Country",
+          "name": "country",
+          "options": [
+            { "label": "USA", "value": "usa" },
+            { "label": "Canada", "value": "canada" },
+            { "label": "Australia", "value": "australia" }
+          ],
+          "required": true
+        },
+        {
+          "type": "checkbox",
+          "label": "Subscribe to newsletter",
+          "name": "subscribe",
+          "required": false
+        }
+       
+      ],
+      
+        "buttons":{
+          "OK": "OK",
+          "Cancel": "Cancel"
+        }
+      
+    }
+  }
+  
