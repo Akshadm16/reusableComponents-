@@ -9,7 +9,7 @@
       </v-container>
 
       <v-dialog v-model="showForm" max-width="600px">
-        <CreateForm />
+        <CreateForm @close-form="showForm = false" />
       </v-dialog>
     </v-main>
   </v-app>

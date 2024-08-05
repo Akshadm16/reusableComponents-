@@ -1,24 +1,19 @@
 <!-- src/components/Toolbar.vue -->
 <template>
+
   <div id="ToolbarContainer">
     <div id="Toolbar">
      <v-sheet max-width="400">
       <v-slide-group multiple show-arrows class="Toolbar1">
         <v-slide-group-item>
-            <v-btn icon variant="text" @click="openForm()">
+            <v-btn icon variant="text" @click="OpenFeatureForm()">
               <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar"></div>
           <v-slide-group-item>
-            <v-btn icon
-                   variant="text"
-                   :disabled="!shouldEnableButton"
-                   @click="openProperties()">
-              <img :src="`${widgetBaseURL}/static/images/I_CATSSEditorDisplayProperties.png`"
-                   :title="('Open Properties Widget')"
-                   style="width: 25px; height: 25px; "
-                   alt="Property Icon"/>
+            <v-btn icon variant="text" @click="OpenFeatureForm()">
+              <v-icon size="small" color="#3b7391" :title="('Create Change Request')">mdi-asterisk</v-icon>
             </v-btn>
           </v-slide-group-item>
           <div class="separationBar"></div>
@@ -68,11 +63,17 @@
   </template>
   
   <script>
+  import { mapActions, mapMutations } from "vuex";
   export default {
     methods: {
-      openForm() {
-        this.$emit('open-form');
-      }
+      ...mapActions(["toggleFeatureXMLForm", "toggleOptionXMLForm", "removeSelectedOptionXMLTags", "openDisplayProperties", "showHideConfirm"]),
+        ...mapMutations(["toggleEditOptionXMLForm"]),
+      
+      OpenFeatureForm: function () {
+            // this.toggleFeatureXMLForm();
+            this.$emit('open-form');
+            console.log("toggleFeatureXMLForm")
+        },
     }
   };
   </script>
